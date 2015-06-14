@@ -13,7 +13,7 @@ class MemeEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +21,7 @@ class MemeEditorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    /*
     func save() {
         //Create the meme
         var meme = Meme( text: textField.text!, image:
@@ -32,5 +32,27 @@ class MemeEditorViewController: UIViewController {
         let appDelegate = object as AppDelegate
         appDelegate.memes.append(meme)
     }
+    */
 
+    @IBAction func cancelNewMeme(sender: AnyObject) {
+        print("cancel\n")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func shareNewMeme(sender: AnyObject) {
+        print("share\n")
+    }
+    
+    @IBAction func newMemeFromCamera(sender: AnyObject) {
+        createNewMeme("camera")
+    }
+    
+    @IBAction func newMemeFromAlbum(sender: AnyObject) {
+        createNewMeme("album")
+    }
+    
+    func createNewMeme(from: String) {
+        println(from)
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeViewController: UIViewController {
+class MemeViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,4 +43,9 @@ class MemeViewController: UIViewController {
         //    imageView.image, memedImage: memedImage)
     }
     
+    @IBAction func createNewMeme(sender: AnyObject) {
+        let createNewMemeController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        self.presentViewController(createNewMemeController, animated: true, completion: nil)
+        
+    }
 }
