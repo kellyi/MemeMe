@@ -199,6 +199,8 @@
                         <outlet property="bottomTextField" destination="gl7-Lu-quV" id="FIt-ar-0pn"/>
                         <outlet property="cameraButton" destination="wKw-eW-2rC" id="s6d-02-JgR"/>
                         <outlet property="memeImageView" destination="Bf7-ff-s6b" id="1Wq-1u-x23"/>
+                        <outlet property="navBar" destination="VeE-zf-DAg" id="5QQ-4B-elQ"/>
+                        <outlet property="toolBar" destination="739-K2-PjM" id="g5g-85-Uj0"/>
                         <outlet property="topTextField" destination="mw4-41-7Cq" id="drT-2M-DaR"/>
                     </connections>
                 </viewController>

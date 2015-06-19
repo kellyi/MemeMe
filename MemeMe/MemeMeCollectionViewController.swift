@@ -16,8 +16,14 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        memes = appDelegate.memes
     }
     
     // MARK: - UICollectionViewDelegate
@@ -28,7 +34,14 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("memeCollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
-        //cell.description = "Hello World"
+        let meme = memes[indexPath.item]
+        cell.setText(meme.topText, bottomString: meme.bottomText)
+        let imageView = UIImageView(image: meme.memeImageName)
+        cell.backgroundView = imageView
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        println("hello world")
     }
 }
