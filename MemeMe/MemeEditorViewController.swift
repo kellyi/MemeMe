@@ -41,6 +41,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillAppear(animated)
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         self.subscribeToKeyboardNotifications()
     }
@@ -52,32 +54,36 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - IBActions
 
-    @IBAction func cancelNewMeme(sender: AnyObject) {
-        print("cancel\n")
+    @IBAction func cancelNewMeme(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func shareNewMeme(sender: AnyObject) {
-        print("share\n")
+    @IBAction func shareNewMeme(sender: UIButton) {
+        let textToShare = "Swift is awesome!"
+        
+        if let myWebsite = NSURL(string: "http://google.com") {
+            let objectsToShare = [textToShare, myWebsite]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
     }
     
-    @IBAction func newMemeFromCamera(sender: AnyObject) {
-        createNewMeme("camera")
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func newMemeFromCamera(sender: UIButton) {
+        newMemeFromSource("camera")
     }
     
-    @IBAction func newMemeFromAlbum(sender: AnyObject) {
-        createNewMeme("album")
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+    @IBAction func newMemeFromAlbum(sender: UIButton) {
+        newMemeFromSource("album")
     }
     
     // MARK: - Create, Format, and Save Memes
+    
+    func newMemeFromSource(source: NSString) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source == "camera" ? UIImagePickerControllerSourceType.Camera : UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
     
     func createNewMeme(from: String) {
         println(from)
