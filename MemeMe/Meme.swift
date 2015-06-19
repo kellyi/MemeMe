@@ -15,7 +15,4 @@ struct Meme {
     var originImageName: String
     var memeImageName: String
     
-    func save() {
-        //var meme = Meme(text: textField.text!, image: imageView.image, memedImage: memedImage)
-    }
 }

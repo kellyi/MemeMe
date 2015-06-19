@@ -12,16 +12,15 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
 
     var memes: [Meme]!
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -37,7 +36,4 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         self.navigationController!.pushViewController(memeDetailViewController, animated: true)
     }
-
-    
-
 }

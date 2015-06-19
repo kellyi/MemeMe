@@ -12,11 +12,15 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
 
     var memes: [Meme]!
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -27,5 +31,4 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
         //cell.description = "Hello World"
         return cell
     }
-
 }
