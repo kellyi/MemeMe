@@ -9,12 +9,6 @@
 import UIKit
 
 class MemeViewController: UITabBarController {
-
-    // MARK: - View Setup
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     // MARK: - IBActions
     

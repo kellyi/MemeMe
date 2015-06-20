@@ -16,10 +16,6 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     // MARK: - View Setup
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let object = UIApplication.sharedApplication().delegate
@@ -44,8 +40,8 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
-        println(meme.bottomText)
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        memeDetailViewController.memeImage = meme.memeImage
         self.navigationController!.pushViewController(memeDetailViewController, animated: true)
     }
 }

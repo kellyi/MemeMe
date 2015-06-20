@@ -35,15 +35,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName : -3.0
         ]
 
-    // tracks state of TextField currently accepting text
+    // track state of TextField currently accepting text
     
     var currentTextFieldName: String!
     
     // MARK: - View Setup
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,7 +67,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let objectsToShare = [memeToShareAndSave]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         self.presentViewController(activityVC, animated: true, completion: nil)
-        // TODO: save the image
         activityVC.completionWithItemsHandler = {(activityType: String!, completed:Bool, obj: [AnyObject]!, error: NSError!) in
             if !completed {
                 return

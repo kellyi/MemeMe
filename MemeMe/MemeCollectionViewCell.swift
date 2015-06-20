@@ -10,11 +10,15 @@ import UIKit
 
 class MemeCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var collectionViewCellImage: UIImageView!
     
     @IBOutlet weak var collectionViewCellTopText: UILabel!
     
     @IBOutlet weak var collectionViewCellBottomText: UILabel!
+    
+    // MARK: - Text setters
     
     func setText(topText: String, bottomText: String) {
         self.collectionViewCellTopText.text = topText

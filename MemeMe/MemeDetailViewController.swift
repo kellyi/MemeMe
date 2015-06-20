@@ -10,12 +10,15 @@ import UIKit
 
 class MemeDetailViewController: UIViewController {
 
+    @IBOutlet weak var detailViewImage: UIImageView!
+    
+    var memeImage: UIImage?
+    
     // MARK: - View Setup
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        detailViewImage.image = memeImage
     }
 
 }
