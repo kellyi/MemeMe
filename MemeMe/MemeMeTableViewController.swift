@@ -44,6 +44,8 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let meme = memes[indexPath.row]
+        println(meme.bottomText)
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         self.navigationController!.pushViewController(memeDetailViewController, animated: true)
     }

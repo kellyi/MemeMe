@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF2C8E8A1B350BF9000D6919 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2C8E881B350BF9000D6919 /* MemeTableViewCell.swift */; };
 		DF906FE41B2CE53000CFE264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF906FE31B2CE53000CFE264 /* AppDelegate.swift */; };
 		DF906FE61B2CE53000CFE264 /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF906FE51B2CE53000CFE264 /* MemeViewController.swift */; };
 		DF906FE91B2CE53000CFE264 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF906FE71B2CE53000CFE264 /* Main.storyboard */; };
@@ -33,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DF2C8E881B350BF9000D6919 /* MemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
 		DF906FDE1B2CE53000CFE264 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF906FE21B2CE53000CFE264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF906FE31B2CE53000CFE264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				DF9070711B2DF9B800CFE264 /* MemeMeCollectionViewController.swift */,
 				DF9070731B2DFECE00CFE264 /* MemeDetailViewController.swift */,
 				DF9D6C431B33D6F800E2FC3F /* MemeCollectionViewCell.swift */,
-				DF2C8E881B350BF9000D6919 /* MemeTableViewCell.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				DF9070741B2DFECE00CFE264 /* MemeDetailViewController.swift in Sources */,
 				DF9070681B2D26B400CFE264 /* MemeEditorViewController.swift in Sources */,
 				DF9070701B2DF98F00CFE264 /* MemeMeTableViewController.swift in Sources */,
-				DF2C8E8A1B350BF9000D6919 /* MemeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

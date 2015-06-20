@@ -64,23 +64,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zNE-x5-SfW">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Uv-ZI-MoB">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="149" height="123"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memeCollectionCell" id="4ci-F0-iTH">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memeCollectionCell" id="4ci-F0-iTH" customClass="MemeCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="149" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCZ-Z7-SrU">
+                                                    <rect key="frame" x="8" y="8" width="134" height="109"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbQ-RX-VYi">
+                                                    <rect key="frame" x="55" y="16" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ld-IA-TxS">
+                                                    <rect key="frame" x="55" y="88" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="hCZ-Z7-SrU" firstAttribute="trailing" secondItem="4ci-F0-iTH" secondAttribute="trailingMargin" id="31m-88-a9g"/>
+                                            <constraint firstItem="3Ld-IA-TxS" firstAttribute="centerX" secondItem="hCZ-Z7-SrU" secondAttribute="centerX" id="4Lx-Xg-t1S"/>
+                                            <constraint firstItem="kbQ-RX-VYi" firstAttribute="centerX" secondItem="hCZ-Z7-SrU" secondAttribute="centerX" id="6jN-lM-VgU"/>
+                                            <constraint firstItem="hCZ-Z7-SrU" firstAttribute="bottom" secondItem="4ci-F0-iTH" secondAttribute="bottomMargin" id="K0K-zw-J2j"/>
+                                            <constraint firstItem="hCZ-Z7-SrU" firstAttribute="top" secondItem="4ci-F0-iTH" secondAttribute="topMargin" id="KkC-Wt-8TS"/>
+                                            <constraint firstItem="hCZ-Z7-SrU" firstAttribute="leading" secondItem="4ci-F0-iTH" secondAttribute="leadingMargin" id="S3D-Of-BYe"/>
+                                            <constraint firstItem="3Ld-IA-TxS" firstAttribute="top" secondItem="hCZ-Z7-SrU" secondAttribute="bottom" constant="-29" id="SlL-kj-cL8"/>
+                                            <constraint firstItem="hCZ-Z7-SrU" firstAttribute="top" secondItem="kbQ-RX-VYi" secondAttribute="bottom" constant="-29" id="tqh-7G-vSh"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="collectionViewCellBottomText" destination="3Ld-IA-TxS" id="Hq3-yv-6Vk"/>
+                                            <outlet property="collectionViewCellImage" destination="hCZ-Z7-SrU" id="AwM-Ps-YdL"/>
+                                            <outlet property="collectionViewCellTopText" destination="kbQ-RX-VYi" id="6vg-4a-ko7"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -91,13 +123,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="zNE-x5-SfW" secondAttribute="bottom" id="8fN-G9-z0l"/>
-                            <constraint firstItem="zNE-x5-SfW" firstAttribute="top" secondItem="duk-EZ-z9G" secondAttribute="topMargin" id="TPu-fV-5fj"/>
-                            <constraint firstItem="zNE-x5-SfW" firstAttribute="leading" secondItem="duk-EZ-z9G" secondAttribute="leadingMargin" constant="-16" id="Vr4-9a-6Tr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zNE-x5-SfW" secondAttribute="trailing" constant="-16" id="g7s-iC-oHV"/>
+                            <constraint firstItem="zNE-x5-SfW" firstAttribute="leading" secondItem="duk-EZ-z9G" secondAttribute="leadingMargin" constant="-16" id="GPb-lo-HKI"/>
+                            <constraint firstItem="zNE-x5-SfW" firstAttribute="bottom" secondItem="duk-EZ-z9G" secondAttribute="bottomMargin" id="Qyv-f8-v0p"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zNE-x5-SfW" secondAttribute="trailing" constant="-16" id="jaI-4S-3aq"/>
+                            <constraint firstItem="zNE-x5-SfW" firstAttribute="top" secondItem="oEo-GI-zvT" secondAttribute="bottom" id="jtX-GQ-5Kj"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" image="collectionIcon" id="pof-Vm-RKK"/>
+                    <connections>
+                        <outlet property="memeMeCollectionView" destination="zNE-x5-SfW" id="q20-HP-VxU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fH-Lh-3d0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
