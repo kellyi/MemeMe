@@ -13,17 +13,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // MARK: - IBOutlets
     
     @IBOutlet weak var navBar: UINavigationBar!
-    
     @IBOutlet weak var toolBar: UIToolbar!
-    
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    
     @IBOutlet weak var memeImageView: UIImageView!
-    
     @IBOutlet weak var topTextField: UITextField!
-    
     @IBOutlet weak var bottomTextField: UITextField!
     
     // MARK: - Set TextField Attributes
@@ -41,6 +35,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - View Setup
     
+    // format TextFields, setup notifications, and enable/disable buttons on load
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setMemeTextAttributes()
@@ -51,6 +46,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.subscribeToKeyboardNotifications()
     }
     
+    // stop listening for keyboardNotifications when view isn't on screen
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.unsubscribeFromKeyboardNotifications()
@@ -58,35 +54,35 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - IBActions
 
+    // pop view off stack
     @IBAction func cancelNewMeme(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // share and save meme
     @IBAction func shareNewMeme(sender: UIButton) {
         let memeToShareAndSave = generateMemedImage()
         let objectsToShare = [memeToShareAndSave]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         self.presentViewController(activityVC, animated: true, completion: nil)
         activityVC.completionWithItemsHandler = {(activityType: String!, completed:Bool, obj: [AnyObject]!, error: NSError!) in
-            if !completed {
-                return
-            } else {
-                self.save(memeToShareAndSave)
-            }
+            self.save(memeToShareAndSave)
         }
     }
     
+    // call modular newMemeFromSource method with camera
     @IBAction func newMemeFromCamera(sender: UIButton) {
         newMemeFromSource("camera")
     }
     
+    // call newMemeFromSource method with album
     @IBAction func newMemeFromAlbum(sender: UIButton) {
         newMemeFromSource("album")
     }
     
     // MARK: - Create, Format, and Save Memes
     
-    // DRY for IBActions from Camera && Album
+    // DRY for newMeme methods
     func newMemeFromSource(source: NSString) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -94,10 +90,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func createNewMeme(from: String) {
-        println(from)
-    }
-    
+    // save meme with shared model
     func save(memedImage: UIImage) {
         var meme = Meme(top: topTextField.text!, bottom: bottomTextField.text!, originalImage: memeImageView.image!, newImage: memedImage)
         let object = UIApplication.sharedApplication().delegate
@@ -105,6 +98,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         appDelegate.memes.append(meme)
     }
     
+    // hide navbar and toolbar, take a screenshot, save that image
+    // then unhide navbar and toolbar
     func generateMemedImage() -> UIImage {
         navBar.hidden = true
         toolBar.hidden = true
@@ -116,12 +111,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         navBar.hidden = false
         toolBar.hidden = false
-        
         return memedImage
     }
     
     // MARK: - UIImagePickerControllerDelegate
     
+    // dismiss ImagePicker when an image has been chosen
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.memeImageView.image = image
@@ -129,6 +124,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // dismiss ImagePicker on cancel
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -145,14 +141,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    // move view up by specified value on receiving notification
     func keyboardWillShow(notification: NSNotification) {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
+    // move view down by specified value on receiving notification
     func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y += getKeyboardHeight(notification)
     }
     
+    // clear default text when editing starts, set state variable to note currently edited TextField
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField.text == "TOP" || textField.text == "BOTTOM" {
             textField.text = ""
@@ -160,6 +159,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         currentTextFieldName = textField == bottomTextField ? "bottom" : "top"
     }
     
+    // return amount to move view up: 0 if the topTextField's being edited, keyboard height if the bottomTextField's being edited
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         // don't move keyboard up if entering text into the topTextField
         if currentTextFieldName == "top" {
@@ -171,8 +171,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return keyboardSize.CGRectValue().height
     }
     
+    // restore default text if user doesn't enter any new text
+    // capitalize and style any lowercase letters the user entered
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // restore default text if user doesn't enter any new text
         if textField.text == "" {
             if textField == topTextField {
                 textField.text = "TOP"

@@ -16,8 +16,10 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     // MARK: - View Setup
     
+    // populate memes array from shared model, reload collectionview data on appearance
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.hidden = false
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
@@ -38,6 +40,7 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
         return cell
     }
     
+    // push detail view on stack
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.item]
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController

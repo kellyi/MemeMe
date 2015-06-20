@@ -16,6 +16,7 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - View Setup
     
+    // populate memes array and reload table data on appearance
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let object = UIApplication.sharedApplication().delegate
@@ -38,6 +39,7 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
+    // push detail view on stack
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let meme = memes[indexPath.row]
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController

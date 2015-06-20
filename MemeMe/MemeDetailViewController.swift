@@ -16,6 +16,7 @@ class MemeDetailViewController: UIViewController {
     
     // MARK: - View Setup
     
+    // set detail view image to image sent from collectionview indexPath.item or tableview indexPath.row
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         detailViewImage.image = memeImage
