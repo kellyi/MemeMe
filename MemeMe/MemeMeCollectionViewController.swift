@@ -20,10 +20,11 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
+        // TODO: remove this println line, which is just to check that it's being saved
+        println(memes)
     }
     
     // MARK: - UICollectionViewDelegate
@@ -34,10 +35,10 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("memeCollectionCell", forIndexPath: indexPath) as! UICollectionViewCell
-        let meme = memes[indexPath.item]
-        cell.setText(meme.topText, bottomString: meme.bottomText)
-        let imageView = UIImageView(image: meme.memeImageName)
-        cell.backgroundView = imageView
+        //let meme = memes[indexPath.item]
+        //cell.setText(meme.topText, bottomString: meme.bottomText)
+        //let imageView = UIImageView(image: meme.memeImageName)
+        //cell.backgroundView = imageView
         return cell
     }
     

@@ -137,15 +137,6 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-41-7Cq">
-                                <rect key="frame" x="284" y="132" width="33" height="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="A3g-f8-nRO" id="fDc-42-hye"/>
-                                </connections>
-                            </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeE-zf-DAg">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <constraints>
@@ -166,13 +157,22 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gl7-Lu-quV">
-                                <rect key="frame" x="268" y="471" width="65" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heH-sv-Mh2">
+                                <rect key="frame" x="284" y="153" width="32" height="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="A3g-f8-nRO" id="XJt-5y-Roe"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yyG-qr-pcJ">
+                                <rect key="frame" x="268" y="454" width="65" height="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" returnKeyType="done"/>
                                 <connections>
-                                    <outlet property="delegate" destination="A3g-f8-nRO" id="0lv-Aw-KgZ"/>
+                                    <outlet property="delegate" destination="A3g-f8-nRO" id="reL-WF-BhL"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -180,28 +180,29 @@
                         <constraints>
                             <constraint firstItem="boz-kY-87n" firstAttribute="top" secondItem="739-K2-PjM" secondAttribute="bottom" id="4cc-BQ-h9T"/>
                             <constraint firstItem="739-K2-PjM" firstAttribute="top" secondItem="Bf7-ff-s6b" secondAttribute="bottom" id="7uP-jc-6ZL"/>
-                            <constraint firstAttribute="centerX" secondItem="mw4-41-7Cq" secondAttribute="centerX" constant="-0.5" id="GMQ-aE-r7H"/>
+                            <constraint firstAttribute="centerX" secondItem="yyG-qr-pcJ" secondAttribute="centerX" id="8em-NH-BjO"/>
+                            <constraint firstItem="heH-sv-Mh2" firstAttribute="top" secondItem="VeE-zf-DAg" secondAttribute="bottom" constant="89" id="AXT-W2-1K9"/>
+                            <constraint firstAttribute="centerX" secondItem="heH-sv-Mh2" secondAttribute="centerX" id="ISk-yY-zhF"/>
                             <constraint firstItem="Bf7-ff-s6b" firstAttribute="top" secondItem="VeE-zf-DAg" secondAttribute="bottom" id="MOs-ew-jXa"/>
-                            <constraint firstItem="gl7-Lu-quV" firstAttribute="top" secondItem="Bf7-ff-s6b" secondAttribute="bottom" constant="-85" id="MXx-E3-ChA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VeE-zf-DAg" secondAttribute="trailing" constant="-16" id="MgU-ld-vHG"/>
-                            <constraint firstItem="Bf7-ff-s6b" firstAttribute="top" secondItem="mw4-41-7Cq" secondAttribute="bottom" constant="-85" id="RqY-tB-Zse"/>
                             <constraint firstAttribute="trailingMargin" secondItem="739-K2-PjM" secondAttribute="trailing" constant="-16" id="RwI-nk-1Qv"/>
                             <constraint firstItem="VeE-zf-DAg" firstAttribute="leading" secondItem="Sn8-20-aJx" secondAttribute="leadingMargin" constant="-16" id="TrW-G5-BdP"/>
+                            <constraint firstItem="739-K2-PjM" firstAttribute="top" secondItem="yyG-qr-pcJ" secondAttribute="bottom" constant="85" id="Y18-dp-V6A"/>
                             <constraint firstItem="739-K2-PjM" firstAttribute="leading" secondItem="Sn8-20-aJx" secondAttribute="leadingMargin" constant="-16" id="hRM-gk-4NI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Bf7-ff-s6b" secondAttribute="trailing" constant="-16" id="oAi-ec-KH6"/>
                             <constraint firstItem="Bf7-ff-s6b" firstAttribute="leading" secondItem="Sn8-20-aJx" secondAttribute="leadingMargin" constant="-16" id="vEI-Lo-8RQ"/>
-                            <constraint firstAttribute="centerX" secondItem="gl7-Lu-quV" secondAttribute="centerX" constant="-0.5" id="vj5-SE-XnW"/>
                             <constraint firstItem="VeE-zf-DAg" firstAttribute="top" secondItem="Sn8-20-aJx" secondAttribute="topMargin" id="xUD-af-fPn"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="bottomTextField" destination="gl7-Lu-quV" id="FIt-ar-0pn"/>
+                        <outlet property="bottomTextField" destination="yyG-qr-pcJ" id="6HQ-fH-nQG"/>
                         <outlet property="cameraButton" destination="wKw-eW-2rC" id="s6d-02-JgR"/>
                         <outlet property="memeImageView" destination="Bf7-ff-s6b" id="1Wq-1u-x23"/>
                         <outlet property="navBar" destination="VeE-zf-DAg" id="5QQ-4B-elQ"/>
+                        <outlet property="shareButton" destination="bHE-fd-eim" id="pyv-Vo-108"/>
                         <outlet property="toolBar" destination="739-K2-PjM" id="g5g-85-Uj0"/>
-                        <outlet property="topTextField" destination="mw4-41-7Cq" id="drT-2M-DaR"/>
+                        <outlet property="topTextField" destination="heH-sv-Mh2" id="AVk-FI-Oda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZB-N7-e4B" userLabel="First Responder" sceneMemberID="firstResponder"/>

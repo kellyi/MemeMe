@@ -18,6 +18,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var topTextField: UITextField!
@@ -32,8 +34,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : -3.0
         ]
+
+    // tracks state of TextField currently accepting text
     
-    var currentTextFieldTag: Int = 0
+    var currentTextFieldName: String!
     
     // MARK: - View Setup
     
@@ -43,11 +47,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        setMemeTextAttributes()
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        shareButton.enabled = memeImageView.image != nil
         self.subscribeToKeyboardNotifications()
     }
     
@@ -63,21 +67,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func shareNewMeme(sender: UIButton) {
-        // TODO: generate a memed image
-        // DONE: define an instance of the ActivityViewController
-        // TODO: pass the ActivityViewController a memedImage as an activity item
-        // DONE: present the ActivityViewController
-
-        let textToShare = "Swift is awesome!"
-        
-        if let myWebsite = NSURL(string: "http://google.com") {
-            let objectsToShare = [textToShare, myWebsite]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            self.presentViewController(activityVC, animated: true, completion: nil)
+        let memeToShareAndSave = generateMemedImage()
+        let objectsToShare = [memeToShareAndSave]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        self.presentViewController(activityVC, animated: true, completion: nil)
+        // TODO: save the image
+        activityVC.completionWithItemsHandler = {(activityType: String!, completed:Bool, obj: [AnyObject]!, error: NSError!) in
+            if !completed {
+                return
+            } else {
+                self.save(memeToShareAndSave)
+            }
         }
-        
-        // call save() in completion handler 
-        //dismiss activity view controller
     }
     
     @IBAction func newMemeFromCamera(sender: UIButton) {
@@ -90,6 +91,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - Create, Format, and Save Memes
     
+    // DRY for IBActions from Camera && Album
     func newMemeFromSource(source: NSString) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -101,21 +103,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         println(from)
     }
     
-    func save() {
-        //Create the meme
-        //var meme = Meme( text: textField.text!, image: imageView.image, memedImage: memedImage)
-        
-        // Add it to the memes array in the Application Delegate
+    func save(memedImage: UIImage) {
+        var meme = Meme(top: topTextField.text!, bottom: bottomTextField.text!, originalImage: memeImageView.image!, newImage: memedImage)
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
-        //appDelegate.memes.append(meme)
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
         navBar.hidden = true
         toolBar.hidden = true
-        
-        // Render view to an image
+    
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -164,20 +162,39 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if textField.text == "TOP" || textField.text == "BOTTOM" {
             textField.text = ""
         }
-        currentTextFieldTag = textField.tag
+        currentTextFieldName = textField == bottomTextField ? "bottom" : "top"
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        if currentTextFieldTag == 1 {
+        // don't move keyboard up if entering text into the topTextField
+        if currentTextFieldName == "top" {
             return CGFloat(0.0)
         }
+        // do move keyboard up if entering text into the bottomTextField
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // restore default text if user doesn't enter any new text
+        if textField.text == "" {
+            if textField == topTextField {
+                textField.text = "TOP"
+            } else {
+                textField.text = "BOTTOM"
+            }
+        }
+        setMemeTextAttributes()
         self.view.endEditing(true)
         return false
+    }
+    
+    // reusable method to set the memetext attributes
+    func setMemeTextAttributes() {
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.text = topTextField.text.uppercaseString
+        bottomTextField.text = bottomTextField.text.uppercaseString
     }
 }
