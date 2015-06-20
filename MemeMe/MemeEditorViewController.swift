@@ -192,6 +192,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // reusable method to set the memetext attributes
     func setMemeTextAttributes() {
+        //topTextField.textAlignment = NSTextAlignment.Center
+        //bottomTextField.textAlignment = NSTextAlignment.Center
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = topTextField.text.uppercaseString

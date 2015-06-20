@@ -23,8 +23,6 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
-        // TODO: remove this println line, which is just to check that it's being saved
-        println(memes)
     }
     
     // MARK: - UICollectionViewDelegate

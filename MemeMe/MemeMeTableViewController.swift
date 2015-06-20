@@ -10,7 +10,9 @@ import UIKit
 
 class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var memes: [Meme]!
+    var memes: [Meme]! = []
+    
+    @IBOutlet weak var memeTableView: UITableView!
     
     // MARK: - View Setup
     
@@ -20,21 +22,24 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
+        self.memeTableView.reloadData()
     }
 
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return memes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("memeTableCell") as! UITableViewCell
-        cell.textLabel!.text = "Hello World"
+        let meme = memes[indexPath.row]
+        
+        cell.textLabel!.text = "\(meme.topText) \(meme.bottomText)"
+        cell.imageView?.image = meme.memeImage
         return cell
     }
     
