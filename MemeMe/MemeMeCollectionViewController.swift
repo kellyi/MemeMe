@@ -23,13 +23,13 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
-        self.memeMeCollectionView.reloadData()
+        memeMeCollectionView.reloadData()
     }
     
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memes.count
+        return memes.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -45,6 +45,6 @@ class MemeMeCollectionViewController: UIViewController, UICollectionViewDataSour
         let meme = memes[indexPath.item]
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         memeDetailViewController.memeImage = meme.memeImage
-        self.navigationController!.pushViewController(memeDetailViewController, animated: true)
+        navigationController!.pushViewController(memeDetailViewController, animated: true)
     }
 }

@@ -22,7 +22,7 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         memes = appDelegate.memes
-        self.memeTableView.reloadData()
+        memeTableView.reloadData()
     }
 
     // MARK: - UITableViewDelegate
@@ -44,6 +44,6 @@ class MemeMeTableViewController: UIViewController, UITableViewDataSource, UITabl
         let meme = memes[indexPath.row]
         let memeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         memeDetailViewController.memeImage = meme.memeImage
-        self.navigationController!.pushViewController(memeDetailViewController, animated: true)
+        navigationController!.pushViewController(memeDetailViewController, animated: true)
     }
 }

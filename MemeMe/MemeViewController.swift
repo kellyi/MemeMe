@@ -15,6 +15,6 @@ class MemeViewController: UITabBarController {
     // segue to Meme Editor View
     @IBAction func createNewMeme(sender: AnyObject) {
         let createNewMemeController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        self.presentViewController(createNewMemeController, animated: true, completion: nil)
+        presentViewController(createNewMemeController, animated: true, completion: nil)
     }
 }

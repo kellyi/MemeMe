@@ -43,13 +43,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.text = "BOTTOM"
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         shareButton.enabled = memeImageView.image != nil
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
     }
     
     // stop listening for keyboardNotifications when view isn't on screen
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
     // MARK: - IBActions
@@ -66,7 +66,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         self.presentViewController(activityVC, animated: true, completion: nil)
         activityVC.completionWithItemsHandler = {(activityType: String!, completed:Bool, obj: [AnyObject]!, error: NSError!) in
-            self.save(memeToShareAndSave)
+            if completed { self.save(memeToShareAndSave) }
         }
     }
     
@@ -87,7 +87,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source == "camera" ? UIImagePickerControllerSourceType.Camera : UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     // save meme with shared model
@@ -119,14 +119,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // dismiss ImagePicker when an image has been chosen
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.memeImageView.image = image
+            memeImageView.image = image
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // dismiss ImagePicker on cancel
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Keyboard and TextField Functions

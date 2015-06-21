@@ -23,17 +23,17 @@ class MemeCollectionViewCell: UICollectionViewCell {
     
     // set text to given strings
     func setText(topText: String, bottomText: String) {
-        self.collectionViewCellTopText.text = topText
-        self.collectionViewCellBottomText.text = bottomText
-        self.setTextAttributes()
+        collectionViewCellTopText.text = topText
+        collectionViewCellBottomText.text = bottomText
+        setTextAttributes()
     }
     
     // display text in meme-style font
     func setTextAttributes() {
-        self.collectionViewCellTopText.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 10)!
-        self.collectionViewCellBottomText.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 10)!
-        self.collectionViewCellTopText.textColor = UIColor.whiteColor()
-        self.collectionViewCellBottomText.textColor = UIColor.whiteColor()
+        collectionViewCellTopText.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 10)!
+        collectionViewCellBottomText.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 10)!
+        collectionViewCellTopText.textColor = UIColor.whiteColor()
+        collectionViewCellBottomText.textColor = UIColor.whiteColor()
     }
 
 }

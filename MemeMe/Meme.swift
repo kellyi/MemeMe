@@ -16,9 +16,9 @@ struct Meme {
     var memeImage: UIImage
     
     init(top: String, bottom: String, originalImage: UIImage, newImage: UIImage) {
-        self.topText = top
-        self.bottomText = bottom
-        self.originImage = originalImage
-        self.memeImage = newImage
+        topText = top
+        bottomText = bottom
+        originImage = originalImage
+        memeImage = newImage
     }
 }
