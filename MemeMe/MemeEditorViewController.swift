@@ -153,18 +153,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // clear default text when editing starts, set state variable to note currently edited TextField
     func textFieldDidBeginEditing(textField: UITextField) {
-        if textField.text == "TOP" || textField.text == "BOTTOM" {
-            textField.text = ""
-        }
+        if textField.text == "TOP" || textField.text == "BOTTOM" { textField.text = "" }
         currentTextFieldName = textField == bottomTextField ? "bottom" : "top"
     }
     
     // return amount to move view up: 0 if the topTextField's being edited, keyboard height if the bottomTextField's being edited
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         // don't move keyboard up if entering text into the topTextField
-        if currentTextFieldName == "top" {
-            return CGFloat(0.0)
-        }
+        if currentTextFieldName == "top" { return CGFloat(0.0) }
         // do move keyboard up if entering text into the bottomTextField
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
@@ -174,13 +170,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // restore default text if user doesn't enter any new text
     // capitalize and style any lowercase letters the user entered
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField.text == "" {
-            if textField == topTextField {
-                textField.text = "TOP"
-            } else {
-                textField.text = "BOTTOM"
-            }
-        }
+        if textField.text == "" { textField.text = textField == topTextField ? "TOP" : "BOTTOM" }
         setMemeTextAttributes()
         self.view.endEditing(true)
         return false
@@ -188,8 +178,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // reusable method to set the memetext attributes
     func setMemeTextAttributes() {
-        //topTextField.textAlignment = NSTextAlignment.Center
-        //bottomTextField.textAlignment = NSTextAlignment.Center
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = topTextField.text.uppercaseString
